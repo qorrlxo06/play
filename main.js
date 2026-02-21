@@ -86,6 +86,55 @@ const tests = {
             'T': { title: "A Sweet Teto Friend", description: "You are full of affection and love to express it! Your friends always know how much you care because you show it with big reactions and lots of words.", image: "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=1912&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             'E': { title: "A Cool Egen Friend", description: "You are a strong, silent pillar for your friends. You might not use a lot of words, but your actions and loyalty speak volumes.", image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
         }
+    },
+    imaginationLevel: {
+        id: 'imaginationLevel',
+        title: "My Imagination Level Test",
+        description: "How creative and imaginative are you? Let's find out!",
+        calculation: 'mostVoted',
+        questions: [
+            { text: "If clouds were made of cotton candy, what would you do?", answers: [{ text: "Fly up and have a giant feast!", value: 'A' }, { text: "Build a soft, bouncy castle on them.", value: 'B' }, { text: "Wonder what flavor the rain would be.", value: 'C' }] },
+            { text: "You find a door in a tree. What's behind it?", answers: [{ text: "A library of glowing storybooks.", value: 'C' }, { text: "A workshop full of magical gadgets.", value: 'B' }, { text: "A hidden world of talking animals.", value: 'A' }] },
+            { text: "If you could invent a new holiday, what would it celebrate?", answers: [{ text: "A day for building amazing things!", value: 'B' }, { text: "A day for telling silly stories.", value: 'C' }, { text: "A day where everyone's dreams come true.", value: 'A' }] }
+        ],
+        results: {
+            'A': { title: "The Dream Weaver", description: "Your imagination is limitless! You dream up fantastic worlds and beautiful possibilities, making life more magical.", image: "https://images.unsplash.com/photo-1501862459425-789c5225be3c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'B': { title: "The Clever Inventor", description: "You have a sharp and inventive mind! You see problems as puzzles and love coming up with brilliant new ideas and solutions.", image: "https://images.unsplash.com/photo-1620712943543-95969871587a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'C': { title: "The Story Spinner", description: "You are a master storyteller! You can turn any idea into a thrilling adventure, captivating everyone around you with your words.", image: "https://images.unsplash.com/photo-1510511233900-1982d92bd835?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+        }
+    },
+    superheroType: {
+        id: 'superheroType',
+        title: "If I Were a Superhero?",
+        description: "Discover your unique superhero alter ego!",
+        calculation: 'mostVoted',
+        questions: [
+            { text: "When a villain appears, what's your first move?", answers: [{ text: "Protect the people around you first!", value: 'A' }, { text: "Quickly analyze the villain's weakness.", value: 'C' }, { text: "Rush in to stop them as fast as possible!", value: 'B' }] },
+            { text: "What kind of superpower would you want?", answers: [{ text: "The power to control plants and talk to animals.", value: 'D' }, { text: "Super speed to be everywhere at once.", value: 'B' }, { text: "Invincible strength and the ability to fly.", value: 'A' }] },
+            { text: "Your superhero costume must have...", answers: [{ text: "A high-tech gadget belt.", value: 'C' }, { text: "A cool cape that helps you fly.", value: 'A' }, { text: "Colors that blend in with nature.", value: 'D' }] }
+        ],
+        results: {
+            'A': { title: "The Guardian of the Big City", description: "You are a classic hero with a strong sense of justice. You are brave, powerful, and always there to protect the innocent.", image: "https://images.unsplash.com/photo-1534809564321-f85101683f12?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'B': { title: "The Super-Fast Rescuer", description: "You are quick on your feet and even quicker to help! You zip around the world, saving the day before anyone is in danger.", image: "https://images.unsplash.com/photo-1593444939787-c035661a3f6d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'C': { title: "The Genius Inventor Hero", description: "You use your incredible brain to save the day! You invent amazing gadgets and create brilliant plans to outsmart any villain.", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'D': { title: "The Nature-Powered Protector", description: "You draw your strength from the earth, sky, and sea. You are a calm but powerful hero who protects all living things.", image: "https://images.unsplash.com/photo-1608933963428-2c3886e44a3e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+        }
+    },
+    snackPersonality: {
+        id: 'snackPersonality',
+        title: "My Snack Personality Analysis!",
+        description: "What does your favorite snack say about you?",
+        calculation: 'mostVoted',
+        questions: [
+            { text: "What's your go-to tteokbokki spice level?", answers: [{ text: "Super spicy, bring on the fire!", value: 'A' }, { text: "Sweet and savory, the perfect balance.", value: 'B' }, { text: "Just a little kick is enough for me.", value: 'C' }] },
+            { text: "You're at a carnival. What do you eat first?", answers: [{ text: "A giant, fluffy cloud of cotton candy.", value: 'B' }, { text: "A bag of salty, crunchy potato chips.", value: 'C' }, { text: "A spicy chicken skewer!", value: 'A' }] },
+            { text: "Choose a drink to go with your snack.", answers: [{ text: "A cool, sweet fruit juice.", value: 'B' }, { text: "A fizzy, exciting soda.", value: 'A' }, { text: "A simple bottle of water is best.", value: 'C' }] }
+        ],
+        results: {
+            'A': { title: "Spicy & Thrilling Tteokbokki", description: "You are adventurous, energetic, and always up for a challenge! You live life to the fullest and never back down from excitement.", image: "https://images.unsplash.com/photo-1570878544025-634547c94543?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'B': { title: "Sweet & Fluffy Cotton Candy", description: "You are a kind, gentle, and dreamy person. You find joy in the little things and have a wonderfully sweet imagination.", image: "https://images.unsplash.com/photo-1594917417036-9a2d39b8c09a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'C': { title: "Salty & Crunchy Potato Chips", description: "You are cool, logical, and have a sharp sense of humor. You are a reliable friend who knows how to stay classic and true.", image: "https.images.unsplash.com/photo-1599490659213-e2b83a9e5087?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+        }
     }
 };
 

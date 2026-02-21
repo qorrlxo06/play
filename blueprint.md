@@ -23,12 +23,13 @@ This project aims to create a fun and engaging test platform designed for elemen
 
 ## **3. Plan for Current Request**
 
-**Objective:** Add the popular "Teto/Egen" friendship style test.
+**Objective:** Add three new, creative, and polished tests inspired by popular testing sites.
 
 **Steps:**
 1.  **Update `main.js` Data Structure:**
-    *   Add a new test object with the id `tetoEgen` to the main `tests` object.
-    *   Create questions that explore friendship dynamics, with answers corresponding to either "Teto" (more expressive and eager) or "Egen" (more reserved and independent) styles.
-    *   Create the two result types, "Teto Friend" and "Egen Friend," with positive, kid-friendly descriptions and suitable images.
-    *   The calculation will be `mostVoted` to determine which of the two styles is dominant.
-2.  **Verify UI:** The existing framework will automatically add the new test to the selection screen. No UI changes are needed.
+    *   Add three new test objects to the main `tests` object with the IDs: `imaginationLevel`, `superheroType`, and `snackPersonality`.
+    *   **Imagination Level Test:** Create questions based on whimsical scenarios with three creative result archetypes: "The Dream Weaver," "The Clever Inventor," and "The Story Spinner."
+    *   **Superhero Type Test:** Design questions about heroic choices with four empowering results: "The Guardian of a Big City," "The Super-Fast Rescuer," "The Genius Inventor Hero," and "The Nature-Powered Protector."
+    *   **Snack Personality Test:** Develop fun questions about food preferences with three relatable results based on popular snacks: "Spicy & Thrilling Tteokbokki," "Sweet & Fluffy Cotton Candy," and "Salty & Crunchy Potato Chips."
+    *   All new tests will use the `mostVoted` calculation logic.
+2.  **Verify UI:** The existing framework will automatically add the new tests to the selection screen. No UI changes are needed.
