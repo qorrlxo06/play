@@ -1,4 +1,3 @@
-
 const app = document.getElementById('app');
 
 // --- Data --- //
@@ -133,7 +132,55 @@ const tests = {
         results: {
             'A': { title: "Spicy & Thrilling Tteokbokki", description: "You are adventurous, energetic, and always up for a challenge! You live life to the fullest and never back down from excitement.", image: "https://images.unsplash.com/photo-1570878544025-634547c94543?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
             'B': { title: "Sweet & Fluffy Cotton Candy", description: "You are a kind, gentle, and dreamy person. You find joy in the little things and have a wonderfully sweet imagination.", image: "https://images.unsplash.com/photo-1594917417036-9a2d39b8c09a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-            'C': { title: "Salty & Crunchy Potato Chips", description: "You are cool, logical, and have a sharp sense of humor. You are a reliable friend who knows how to stay classic and true.", image: "https.images.unsplash.com/photo-1599490659213-e2b83a9e5087?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+            'C': { title: "Salty & Crunchy Potato Chips", description: "You are cool, logical, and have a sharp sense of humor. You are a reliable friend who knows how to stay classic and true.", image: "https://images.unsplash.com/photo-1599490659213-e2b83a9e5087?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+        }
+    },
+    innerAnimal: {
+        id: 'innerAnimal',
+        title: "Find Your Inner Animal",
+        description: "Discover the animal that represents your true inner self!",
+        calculation: 'mostVoted',
+        questions: [
+            { text: "You're lost in a forest. What do you do?", answers: [{ text: "Climb the tallest tree to see the way.", value: 'A' }, { text: "Roar loudly to scare away any danger.", value: 'B' }, { text: "Follow a stream, enjoying the journey.", value: 'C' }] },
+            { text: "A friend needs advice. You...", answers: [{ text: "Offer a wise, well-thought-out solution.", value: 'A' }, { text: "Encourage them to be strong and brave.", value: 'B' }, { text: "Listen with empathy and go with the flow.", value: 'C' }] },
+            { text: "What's your favorite time of day?", answers: [{ text: "The quiet, mysterious night.", value: 'A' }, { text: "The bright, sunny afternoon.", value: 'B' }, { text: "The playful, magical twilight.", value: 'C' }] }
+        ],
+        results: {
+            'A': { title: "The Wise Owl", description: "You are observant, thoughtful, and full of wisdom. You see things others miss and have a calm, mysterious strength.", image: "https://images.unsplash.com/photo-1571551323497-8b0210300a7b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'B': { title: "The Brave Lion", description: "You are a natural leader, full of courage and a powerful presence. You protect your friends and face challenges head-on.", image: "https://images.unsplash.com/photo-1546182990-dffeaf781f7b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'C': { title: "The Free-Spirited Dolphin", description: "You are playful, social, and intelligent. You navigate life with joy and curiosity, making friends wherever you go.", image: "https://images.unsplash.com/photo-1550997886-2273293a93c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+        }
+    },
+    secretPower: {
+        id: 'secretPower',
+        title: "Discover Your Secret Superpower",
+        description: "What amazing, hidden ability do you possess?",
+        calculation: 'mostVoted',
+        questions: [
+            { text: "A friend is sad but won't say why. You...", answers: [{ text: "Just seem to know what they're feeling.", value: 'A' }, { text: "Wish you could turn back time to fix it.", value: 'B' }, { text: "Your calm presence makes them feel better.", value: 'C' }] },
+            { text: "You have a big test tomorrow. You wish you could...", answers: [{ text: "Instantly know all the answers.", value: 'A' }, { text: "Have a little more time to study.", value: 'B' }, { text: "Stay calm and not feel any stress.", value: 'C' }] },
+            { text: "What kind of magic would you want to learn?", answers: [{ text: "Magic to connect with others' thoughts.", value: 'A' }, { text: "Magic to control the flow of moments.", value: 'B' }, { text: "Magic to soothe any pain or sadness.", value: 'C' }] }
+        ],
+        results: {
+            'A': { title: "Mind-Reading Telepathy", description: "You have a deep understanding of others' feelings and thoughts. Your intuition is your superpower, connecting you deeply with people.", image: "https://images.unsplash.com/photo-1531306151249-5f8f0a40a3f8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'B': { title: "Time-Bending Power", description: "You have a unique relationship with time. You are patient, wise, and know how to make every moment count, as if you can slow or speed them up.", image: "https://images.unsplash.com/photo-1495003972234-9a40e689e4b6?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'C': { title: "Heart-Healing Empathy", description: "You have a powerful healing aura. Your kindness and presence are a soothing balm, bringing peace and comfort to those around you.", image: "https://images.unsplash.com/photo-1576085898323-218337e3e43c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+        }
+    },
+    travelDestination: {
+        id: 'travelDestination',
+        title: "What's Your Perfect Travel Spot?",
+        description: "Find the dream destination that matches your soul!",
+        calculation: 'mostVoted',
+        questions: [
+            { text: "What would you pack in your suitcase first?", answers: [{ text: "An old map and a magnifying glass.", value: 'A' }, { text: "Swimsuit and sunglasses.", value: 'B' }, { text: "A sturdy pair of hiking boots.", value: 'C' }] },
+            { text: "On vacation, you'd rather be...", answers: [{ text: "Exploring ancient ruins and museums.", value: 'A' }, { text: "Lying on a sandy beach with a cool drink.", value: 'B' }, { text: "Climbing a mountain or zip-lining.", value: 'C' }] },
+            { text: "What's the perfect vacation souvenir?", answers: [{ text: "A mysterious artifact with a story.", value: 'A' }, { text: "A beautiful seashell or a piece of jewelry.", value: 'B' }, { text: "A cool rock or an amazing photo.", value: 'C' }] }
+        ],
+        results: {
+            'A': { title: "The Ancient City of Mysteries", description: "You are a curious soul who loves history and secrets. Your perfect trip is exploring old castles, forgotten temples, and dusty libraries.", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'B': { title: "The Paradise Beach of Relaxation", description: "You are a chill and easygoing person who loves to relax and recharge. Your ideal vacation involves sun, sand, and sparkling blue water.", image: "https://images.unsplash.com/photo-1507525428034-b723a9ce68c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            'C': { title: "The Jungle of Thrilling Adventures", description: "You are a brave and energetic adventurer! Your perfect getaway is filled with excitement, like exploring deep jungles, climbing tall peaks, and discovering new things.", image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
         }
     }
 };

@@ -23,13 +23,13 @@ This project aims to create a fun and engaging test platform designed for elemen
 
 ## **3. Plan for Current Request**
 
-**Objective:** Add three new, creative, and polished tests inspired by popular testing sites.
+**Objective:** Add three new, high-quality tests inspired by the latest psychological testing trends.
 
 **Steps:**
 1.  **Update `main.js` Data Structure:**
-    *   Add three new test objects to the main `tests` object with the IDs: `imaginationLevel`, `superheroType`, and `snackPersonality`.
-    *   **Imagination Level Test:** Create questions based on whimsical scenarios with three creative result archetypes: "The Dream Weaver," "The Clever Inventor," and "The Story Spinner."
-    *   **Superhero Type Test:** Design questions about heroic choices with four empowering results: "The Guardian of a Big City," "The Super-Fast Rescuer," "The Genius Inventor Hero," and "The Nature-Powered Protector."
-    *   **Snack Personality Test:** Develop fun questions about food preferences with three relatable results based on popular snacks: "Spicy & Thrilling Tteokbokki," "Sweet & Fluffy Cotton Candy," and "Salty & Crunchy Potato Chips."
-    *   All new tests will use the `mostVoted` calculation logic.
-2.  **Verify UI:** The existing framework will automatically add the new tests to the selection screen. No UI changes are needed.
+    *   Add three new test objects to the main `tests` object with the IDs: `innerAnimal`, `secretPower`, and `travelDestination`.
+    *   **Inner Animal Test:** Create questions exploring instincts and social behaviors, leading to three profound results: "The Wise Owl," "The Brave Lion," and "The Free-Spirited Dolphin."
+    *   **Secret Power Test:** Design questions about empathy and problem-solving, revealing three empowering abilities: "Mind-Reading Telepathy," "Time-Bending Power," and "Heart-Healing Empathy."
+    *   **Travel Destination Test:** Craft questions about adventure and relaxation preferences, recommending three dream locations: "The Ancient City of Mysteries," "The Paradise Beach of Relaxation," and "The Jungle of Thrilling Adventures."
+    *   All new tests will utilize the `mostVoted` calculation logic.
+2.  **Verify UI:** The existing framework will automatically incorporate the new tests into the selection screen, maintaining a seamless user experience.
