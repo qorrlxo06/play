@@ -1,5 +1,15 @@
 const app = document.getElementById('app');
 
+// --- Audio --- //
+const clickSound = new Audio('assets/sounds/click.mp3');
+const selectSound = new Audio('assets/sounds/select.mp3');
+const completeSound = new Audio('assets/sounds/complete.mp3');
+
+function playSound(sound) {
+    sound.currentTime = 0;
+    sound.play();
+}
+
 // --- Data --- //
 const tests = {
     innerStar: {
@@ -189,6 +199,7 @@ const tests = {
 let currentTestId = null;
 let currentQuestionIndex = 0;
 let userAnswers = [];
+let lastResultType = null; // Store the last result
 
 // --- Render Functions --- //
 function renderTestSelectionScreen() {
@@ -207,6 +218,7 @@ function renderTestSelectionScreen() {
 
     document.querySelectorAll('.test-select-btn').forEach(button => {
         button.addEventListener('click', (e) => {
+            playSound(clickSound);
             currentTestId = e.currentTarget.dataset.id;
             renderStartScreen(currentTestId);
         });
@@ -222,7 +234,10 @@ function renderStartScreen(testId) {
             <button class="btn" id="start-btn">Start Test</button>
         </div>
     `;
-    document.getElementById('start-btn').addEventListener('click', () => startTest(testId));
+    document.getElementById('start-btn').addEventListener('click', (e) => {
+        playSound(clickSound);
+        startTest(testId)
+    });
 }
 
 function renderQuestion() {
@@ -247,22 +262,92 @@ function renderQuestion() {
     });
 }
 
-function renderResult() {
+function renderResult(resultType) {
+    playSound(completeSound);
     const test = tests[currentTestId];
-    const resultType = calculateResult();
     const result = test.results[resultType];
+    lastResultType = resultType; // Save the result type
+
+    // --- NEW: Recommendation Engine Logic ---
+    const recommendations = getRecommendations(currentTestId);
+    const recommendationsHtml = recommendations.map(rec => `
+        <div class="recommendation-card" data-id="${rec.id}">
+            <h4>${rec.title}</h4>
+        </div>
+    `).join('');
 
     app.innerHTML = `
         <div class="fade-in">
             <h1>${result.title}</h1>
-            ${result.image ? `<img src="${result.image}" alt="${result.title}" class="result-image">` : ''}
+            <img src="${result.image}" alt="${result.title}" class="result-image">
             <p>${result.description}</p>
-            <button class="btn" id="restart-btn">Try Again</button>
-            <button class="btn" id="home-btn">Back to Home</button>
+
+            <div class="result-actions">
+                <h3>Share Your Result!</h3>
+                <div class="share-buttons">
+                    <button class="btn" id="kakao-share-btn">Share on KakaoTalk</button>
+                    <button class="btn" id="copy-link-btn">Copy Link</button>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="btn" id="restart-btn">Try Again</button>
+                <button class="btn" id="home-btn">Back to Home</button>
+            </div>
+
+            <button class="btn btn-secondary" id="show-all-btn">See All Results</button>
+
+            <!-- NEW: Recommendation Section -->
+            <div class="recommendation-section">
+                <h2>You Might Also Like...</h2>
+                <div class="recommendation-grid">${recommendationsHtml}</div>
+            </div>
         </div>
     `;
-    document.getElementById('restart-btn').addEventListener('click', () => startTest(currentTestId));
-    document.getElementById('home-btn').addEventListener('click', renderTestSelectionScreen);
+
+    // Event Listeners
+    document.getElementById('restart-btn').addEventListener('click', () => { playSound(clickSound); startTest(currentTestId); });
+    document.getElementById('home-btn').addEventListener('click', () => { playSound(clickSound); renderTestSelectionScreen(); });
+    document.getElementById('show-all-btn').addEventListener('click', () => { playSound(clickSound); renderAllResults(currentTestId); });
+    
+    // Sharing Listeners
+    document.getElementById('kakao-share-btn').addEventListener('click', () => { playSound(clickSound); shareOnKakao(result); });
+    document.getElementById('copy-link-btn').addEventListener('click', (e) => { playSound(clickSound); copyLinkToClipboard(e); });
+
+    // Recommendation Listeners
+    document.querySelectorAll('.recommendation-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            playSound(clickSound);
+            currentTestId = e.currentTarget.dataset.id;
+            renderStartScreen(currentTestId);
+        });
+    });
+}
+
+function renderAllResults(testId) {
+    const test = tests[testId];
+    const allResultsHtml = Object.keys(test.results).map(key => {
+        const result = test.results[key];
+        return `
+            <div class="result-card">
+                <img src="${result.image}" alt="${result.title}">
+                <div class="result-card-content">
+                    <h4>${result.title}</h4>
+                    <p>${result.description}</p>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    app.innerHTML = `
+        <div class="fade-in">
+            <h1>All Results for "${test.title}"</h1>
+            <div class="all-results-grid">${allResultsHtml}</div>
+            <button class="btn" id="back-to-result-btn">Back to My Result</button>
+        </div>
+    `;
+
+    document.getElementById('back-to-result-btn').addEventListener('click', () => { playSound(clickSound); renderResult(lastResultType); });
 }
 
 // --- Logic --- //
@@ -274,42 +359,92 @@ function startTest(testId) {
 }
 
 function selectAnswer(value) {
+    playSound(selectSound);
     userAnswers.push(value);
     currentQuestionIndex++;
     const test = tests[currentTestId];
     if (currentQuestionIndex < test.questions.length) {
         renderQuestion();
     } else {
-        renderResult();
+        const resultType = calculateResult();
+        renderResult(resultType);
     }
 }
 
 function calculateResult() {
     const test = tests[currentTestId];
     if (test.calculation === 'mbti') {
-        const counts = userAnswers.reduce((acc, curr) => {
-            acc[curr] = (acc[curr] || 0) + 1;
-            return acc;
-        }, {});
-
-        const e = counts['E'] || 0;
-        const i = counts['I'] || 0;
-        const s = counts['S'] || 0;
-        const n = counts['N'] || 0;
-        const t = counts['T'] || 0;
-        const f = counts['F'] || 0;
-        const j = counts['J'] || 0;
-        const p = counts['P'] || 0;
-
+        const counts = userAnswers.reduce((acc, curr) => { acc[curr] = (acc[curr] || 0) + 1; return acc; }, {});
+        const e = counts['E'] || 0; const i = counts['I'] || 0;
+        const s = counts['S'] || 0; const n = counts['N'] || 0;
+        const t = counts['T'] || 0; const f = counts['F'] || 0;
+        const j = counts['J'] || 0; const p = counts['P'] || 0;
         return (e >= i ? 'E' : 'I') + (s >= n ? 'S' : 'N') + (t >= f ? 'T' : 'F') + (j >= p ? 'J' : 'P');
-
     } else { // mostVoted
-        const counts = userAnswers.reduce((acc, curr) => {
-            acc[curr] = (acc[curr] || 0) + 1;
-            return acc;
-        }, {});
+        const counts = userAnswers.reduce((acc, curr) => { acc[curr] = (acc[curr] || 0) + 1; return acc; }, {});
         return Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
     }
+}
+
+// --- NEW: Recommendation Engine --- //
+function getRecommendations(excludeId) {
+    const allTestIds = Object.keys(tests);
+    const availableIds = allTestIds.filter(id => id !== excludeId);
+    
+    // Shuffle the array
+    for (let i = availableIds.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [availableIds[i], availableIds[j]] = [availableIds[j], availableIds[i]];
+    }
+    
+    // Return the first two
+    return availableIds.slice(0, 2).map(id => tests[id]);
+}
+
+// --- Sharing & Utility --- //
+function shareOnKakao(result) {
+    if (typeof Kakao === 'undefined' || !Kakao.isInitialized()) {
+        alert('Kakao SDK is not loaded. Please check your internet connection and script tags.');
+        return;
+    }
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: `My result is... ${result.title}! - Fun Test Platform`,
+            description: result.description,
+            imageUrl: result.image,
+            link: {
+                mobileWebUrl: window.location.href,
+                webUrl: window.location.href,
+            },
+        },
+        buttons: [
+            {
+                title: 'Take the Test Too!',
+                link: {
+                    mobileWebUrl: window.location.href,
+                    webUrl: window.location.href,
+                },
+            },
+        ],
+    });
+}
+
+function copyLinkToClipboard(e) {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+        const button = e.target;
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.disabled = true;
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy link: ', err);
+        alert('Failed to copy link!');
+    });
 }
 
 // --- Initial Load ---
